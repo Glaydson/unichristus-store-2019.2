@@ -6,7 +6,7 @@
           <ul class="admin-menu">
             <!-- Links para as rotas irmãs -->
             <li>
-              <router-link to="/admin">Ver Produtos</router-link>
+              <router-link to="/admin/produtos">Ver Produtos</router-link>
             </li>
             <li>
               <router-link to="/admin/novo">Novo Produto</router-link>

@@ -18,12 +18,53 @@
     </nav>
 
     <router-view />
+    <!-- Adiciona classes para exibir um loader -->
+    <div class="overlay" v-show="showLoader">
+      <div class="loading-spinner">
+        <div class="dot dotOne"></div>
+        <div class="dot dotTwo"></div>
+        <div class="dot dotThree"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import toastr from "toastr";
+
+import {
+  ADICIONAR_PRODUTO_SUCESSO,
+  ATUALIZAR_PRODUTO_SUCESSO,
+  REMOVER_PRODUTO_SUCESSO
+} from "./store/mutation-types";
+
 export default {
-  name: "app"
+  name: "App",
+  created() {
+    // Subscriptions para as mutations
+    this.$store.subscribe(mutation => {
+      if (mutation.payload) {
+        switch (mutation.type) {
+          case ADICIONAR_PRODUTO_SUCESSO:
+            toastr.success("Produto criado.", "Sucesso!");
+            break;
+          case ATUALIZAR_PRODUTO_SUCESSO:
+            toastr.success("Produto atualizado.", "Sucesso!");
+            break;
+          case REMOVER_PRODUTO_SUCESSO:
+            toastr.warning("Produto removido.", "Apagado!");
+            break;
+          default:
+        }
+      }
+    });
+  },
+  computed: {
+    showLoader() {
+      // Carregando spinner
+      return this.$store.state.showLoader;
+    }
+  }
 };
 </script>
 

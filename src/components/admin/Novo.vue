@@ -13,8 +13,8 @@ export default {
   },
   methods: {
     adicionaProduto(modelo) {
-      // eslint-disable-next-line
-      console.log('modelo', modelo);
+       this.$store.dispatch('adicionarProduto', modelo);
+       this.modelo = {};
     },
   },
   components: {

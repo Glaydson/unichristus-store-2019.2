@@ -6,8 +6,8 @@
         <input
           type="text"
           placeholder="Nome"
-          v-model="modelo.nome"
-          name="nome"
+          v-model="modelo.name"
+          name="name"
           class="form-control"
         />
       </div>
@@ -17,18 +17,18 @@
           type="number"
           class="form-control"
           placeholder="Preço"
-          v-model="modelo.preco"
-          name="preco"
+          v-model="modelo.price"
+          name="price"
         />
       </div>
       <div class="form-group">
         <label>Fabricante</label>
-        <select type="text" class="form-control" v-model="modelo.fabricante" name="fabricante">
+        <select type="text" class="form-control" v-model="modelo.manufacturer" name="manufacturer">
           <option
             v-for="fabricante in fabricantes"
             :key="fabricante._id"
             :value="fabricante"
-          >{{fabricante.nome}}</option>
+          >{{fabricante.name}}</option>
         </select>
       </div>
     </div>
@@ -40,8 +40,8 @@
           type="text"
           class="form-control"
           placeholder="Imagem"
-          v-model="modelo.imagem"
-          name="imagem"
+          v-model="modelo.image"
+          name="image"
         />
       </div>
       <div class="form-group">
@@ -50,8 +50,8 @@
           class="form-control"
           placeholder="Descrição"
           rows="5"
-          v-model="modelo.descricao"
-          name="descricao"
+          v-model="modelo.description"
+          name="description"
         ></textarea>
       </div>
       <div class="form-group new-button">
@@ -69,19 +69,17 @@
 <script>
 export default {
   props: ["modelo", "estaEditando"],
-  data() {
-    return {
-      fabricantes: [
-        {
-          _id: "sam",
-          nome: "Samsung"
-        },
-        {
-          _id: "apple",
-          nome: "Apple"
-        }
-      ]
-    };
+  created() {
+    if (this.fabricantes.length === 0) {
+      this.$store.dispatch("todosFabricantes");
+    }
+  },
+  computed: {
+    fabricantes() {
+      // eslint-disable-next-line
+      console.log(this.$store.getters.todosFabricantes);
+      return this.$store.getters.todosFabricantes;
+    }
   },
   methods: {
     salvarProduto() {

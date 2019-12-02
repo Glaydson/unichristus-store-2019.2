@@ -83,7 +83,7 @@ export default new Router({
       ],
     },
     {
-      path: 'detalhes/:id',
+      path: '/detalhes/:id',
       name: 'Detalhes',
       component: Detalhes
     }

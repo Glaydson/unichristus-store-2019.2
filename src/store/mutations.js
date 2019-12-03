@@ -11,8 +11,14 @@ import {
     TODOS_PRODUTOS_SUCESSO,
     TODOS_FABRICANTES,
     TODOS_FABRICANTES_SUCESSO,
-  } from './mutation-types';
-  
+    TODOS_LIVROS,
+    TODOS_LIVROS_SUCESSO,
+    LIVRO_POR_ID,
+    LIVRO_POR_ID_SUCESSO,
+    ADICIONAR_LIVRO,
+    ADICIONAR_LIVRO_SUCESSO
+} from './mutation-types';
+
 export const produtoMutations = {
     [TODOS_PRODUTOS](state) {
         // Chamado ao obter produtos
@@ -63,7 +69,7 @@ export const produtoMutations = {
     [REMOVER_PRODUTO_SUCESSO]: (state, payload) => {
         state.showLoader = false;
         const index = state.produtos.findIndex(p => p._id === payload);
-         // eslint-disable-next-line
+        // eslint-disable-next-line
         console.debug('index', index);
         state.produtos.splice(index, 1);
     },
@@ -77,3 +83,28 @@ export const fabricanteMutations = {
         state.fabricantes = payload;
     },
 };
+
+export const livroMutations = {
+    [TODOS_LIVROS](state) {
+        state.showLoader = true;
+    },
+    [TODOS_LIVROS_SUCESSO](state, payload) {
+        state.showLoader = false;
+        state.livros = payload;
+    },
+    [LIVRO_POR_ID](state) {
+        state.showLoader = true;
+    },
+    [LIVRO_POR_ID_SUCESSO](state, payload) {
+        state.showLoader = false;
+        state.livro = payload;
+    },
+    [ADICIONAR_LIVRO]: (state) => {
+        state.showLoader = true;
+    },
+    [ADICIONAR_LIVRO_SUCESSO]: (state, payload) => {
+        state.showLoader = false;
+        state.livros.push(payload);
+    },
+};
+

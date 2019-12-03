@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { produtoGetters, fabricanteGetters } from './getters';
-import { produtoMutations, fabricanteMutations } from './mutations';
-import { produtoActions, fabricanteActions } from './actions';
+import { produtoGetters, fabricanteGetters, livroGetters } from './getters';
+import { produtoMutations, fabricanteMutations, livroMutations } from './mutations';
+import { produtoActions, fabricanteActions, livroActions } from './actions';
 
 Vue.use(Vuex)
 
@@ -17,11 +17,16 @@ export default new Vuex.Store({
         produtos: [],
         // todos os fabricantes
         fabricantes: [],
+        // todos os livros
+        livros: [],
+        // livro selecionado
+        livro: {},
+
     },
     // GETTERS
-    getters: Object.assign({}, produtoGetters, fabricanteGetters),
-    mutations: Object.assign({}, produtoMutations, fabricanteMutations),
-    actions: Object.assign({}, produtoActions, fabricanteActions),
+    getters: Object.assign({}, produtoGetters, fabricanteGetters, livroGetters),
+    mutations: Object.assign({}, produtoMutations, fabricanteMutations, livroMutations),
+    actions: Object.assign({}, produtoActions, fabricanteActions, livroActions),
 
 
 });

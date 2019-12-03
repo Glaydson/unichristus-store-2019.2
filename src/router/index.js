@@ -13,6 +13,7 @@ import AdminLivros from '@/components/adminLivros/AdminLivros';
 import NovoLivro from '@/components/adminLivros/NovoLivro';
 import Livros from '@/components/adminLivros/Livros';
 import EditarLivro from '@/components/adminLivros/EditarLivro';
+import Detalhes from '@/components/admin/Detalhes';
 
 Vue.use(Router);
 
@@ -81,5 +82,10 @@ export default new Router({
         },
       ],
     },
+    {
+      path: '/detalhes/:id',
+      name: 'Detalhes',
+      component: Detalhes
+    }
   ],
 });
